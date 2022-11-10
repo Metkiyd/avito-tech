@@ -1,21 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './main.css';
 
-import { setCount } from '../../redux/actions/NewsActions';
+import { getNews } from '../../redux/actions/NewsActions';
 import { useDispatch, useSelector } from "react-redux";
+import Story from '../Story/Story';
 
 const Main = () => {
   const dispatch = useDispatch()
-  // const count = useSelector(state => state.News.count)
+  const News = useSelector(state => state.News)
+  console.log(News)
+  const Stories = useSelector(state => state.Story)
+  console.log(Stories)
 
-  // function onCountClick() {
-  //   dispatch(setCount(5))
-  // }
+  const update = () => dispatch(getNews());
+
+  useEffect( () =>{
+    update();
+    // setInterval(() => update(), 60000);
+  }, [])
+
+
   return (
     <div className='container'>
-      Main
-      {/* <button onClick={()=>onCountClick()}>COUNT</button>
-      <div>{count}</div> */}
+      {News.news}
+      <Story />
     </div>
   )
 };
