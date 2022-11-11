@@ -1,16 +1,14 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import './main.css';
 
 import { getNews } from '../../redux/actions/NewsActions';
-import { useDispatch, useSelector } from "react-redux";
 import Story from '../Story/Story';
+
 
 const Main = () => {
   const dispatch = useDispatch()
-  const News = useSelector(state => state.News)
-  console.log(News)
-  const Stories = useSelector(state => state.Story)
-  console.log(Stories)
 
   const update = () => dispatch(getNews());
 
@@ -19,11 +17,24 @@ const Main = () => {
     // setInterval(() => update(), 60000);
   }, [])
 
+  const News = useSelector(state => state.News.news)
+  
+  const navigate = useNavigate()
 
   return (
     <div className='container'>
-      {News.news}
-      <Story />
+      {
+        News.map(item =>
+          <Story 
+            key={item.id}
+            title={item.title}
+            by={item.by}
+            score={item.score}
+            time={item.time}
+            onClick={() => navigate(`/story/${item.id}`)}
+          />
+        )
+      }
     </div>
   )
 };

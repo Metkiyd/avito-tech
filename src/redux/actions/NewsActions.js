@@ -15,10 +15,23 @@ export const setNews = (news) => (
 export const getNews = () => {
   return async (dispatch) => {
     const response = await axios.get(`https://hacker-news.firebaseio.com/v0/newstories.json?orderBy=%22$key%22&limitToFirst=${3}`)
-    dispatch(setNews(response.data))
+    const result = response.data
+    //console.log(result) //arr ids
+    // news переписать
+    let news = await Promise.all(result.map(async (id) => {
+      const resp = await getStories(id)
+      return resp
+    }))
+    dispatch(setNews(news))
   }
 }
-
+//WORKING getStoryById
+export const getStories = async (id) => {
+  const response = await axios.get(`https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`)
+  const result = response.data
+  //console.log(result) //stories objects
+  return result;
+}
 
 // import axios from "axios"
 

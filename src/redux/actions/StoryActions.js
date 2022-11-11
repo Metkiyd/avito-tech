@@ -14,15 +14,17 @@ export const setStory = (stories) => (
 // request
 
 
-export const getStories = async (id) => {
-    const response = await axios.get(`https://hacker-news.firebaseio.com/v0/item/${id}.json`)
-    return response.data;
-}
+// export const getStories = async (id) => {
+//     const response = await axios.get(`https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`)
+//     const result = response.data
+//     //console.log(result) //stories objects
+//     return result;
+// }
 
-export const getStory = (id) => async (dispatch) => {
-    const response = await getStories(id);
-    dispatch(setStory(response))
-}
+// export const getStory = (id) => async (dispatch) => {
+//     const response = await getStories(id);
+//     dispatch(setStory(response))
+// }
 
 
 // export const loadNewsById = (id) => async (dispatch) => {

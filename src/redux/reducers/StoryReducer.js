@@ -1,6 +1,5 @@
 import { SET_STORY } from "../actions/StoryActions";
 
-
 const initialState = {
   stories: [],
   isFetching: false,
@@ -18,4 +17,3 @@ export default function StoryReducer(state = initialState, action) {
       return state;
   }
 }
-
