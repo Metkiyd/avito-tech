@@ -1,4 +1,4 @@
-import axios from "axios"
+import { getStories } from "./NewsActions";
 
 //action type
 export const SET_STORY = "SET_STORY"
@@ -12,29 +12,7 @@ export const setStory = (stories) => (
 )
 
 // request
-
-
-// export const getStories = async (id) => {
-//     const response = await axios.get(`https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`)
-//     const result = response.data
-//     //console.log(result) //stories objects
-//     return result;
-// }
-
-// export const getStory = (id) => async (dispatch) => {
-//     const response = await getStories(id);
-//     dispatch(setStory(response))
-// }
-
-
-// export const loadNewsById = (id) => async (dispatch) => {
-//   const response = await getNewsItem(id);
-//   const setCountry = await response;
-//   dispatch(setItem(setCountry))
-// }
-
-// export const getNewsItem = async (id) => {
-//   let response = await fetch(`https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`)
-//   let result = await response.json()
-//   return result
-// }
+export const getStory = (id) => async (dispatch) => {
+    const response = await getStories(id);
+    dispatch(setStory(response))
+}

@@ -23,6 +23,7 @@ const Main = () => {
 
   return (
     <div className='container'>
+      <button className='update-news' onClick={() => {update()}}>Update News</button>
       {
         News.map(item =>
           <Story 
