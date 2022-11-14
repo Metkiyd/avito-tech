@@ -11,8 +11,8 @@ export default function StoryReducer(state = initialState, action) {
     case SET_STORY:
       return {
         ...state,
-        stories: action.payload
-      }
+        stories: action.payload,
+      };
     default:
       return state;
   }

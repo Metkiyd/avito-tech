@@ -1,0 +1,17 @@
+.story {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid;
+  margin: 10px 0;
+  border-radius: 10px;
+}
+
+.story-desc {
+  display: flex;
+  gap: 30px;
+}
+.story:hover {
+  background-color: rgb(245, 245, 240);
+  cursor: pointer;
+}

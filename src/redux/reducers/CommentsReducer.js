@@ -11,8 +11,8 @@ export default function CommentsReducer(state = initialState, action) {
     case GET_COMMENTS:
       return {
         ...state,
-        comments: action.payload
-      }
+        comments: action.comments,
+      };
     default:
       return state;
   }

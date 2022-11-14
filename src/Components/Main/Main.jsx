@@ -1,43 +1,47 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from 'react-router-dom';
-import './main.css';
+import { useNavigate } from "react-router-dom";
+import "./main.css";
 
-import { getNews } from '../../redux/actions/NewsActions';
-import Story from '../Story/Story';
-
+import { getNews } from "../../redux/actions/NewsActions";
+import Story from "../Story/Story";
 
 const Main = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const update = () => dispatch(getNews());
 
-  useEffect( () =>{
+  useEffect(() => {
     update();
     // setInterval(() => update(), 60000);
-  }, [])
+  }, []);
 
-  const News = useSelector(state => state.News.news)
-  
-  const navigate = useNavigate()
+  const News = useSelector((state) => state.News.news);
+
+  const navigate = useNavigate();
 
   return (
-    <div className='container'>
-      <button className='update-news' onClick={() => {update()}}>Update News</button>
-      {
-        News.map(item =>
-          <Story 
-            key={item.id}
-            title={item.title}
-            by={item.by}
-            score={item.score}
-            time={item.time}
-            onClick={() => navigate(`/story/${item.id}`)}
-          />
-        )
-      }
+    <div className="container">
+      <button
+        className="update-news"
+        onClick={() => {
+          update();
+        }}
+      >
+        Update News
+      </button>
+      {News.map((item) => (
+        <Story
+          key={item.id}
+          title={item.title}
+          by={item.by}
+          score={item.score}
+          time={item.time}
+          onClick={() => navigate(`/story/${item.id}`)}
+        />
+      ))}
     </div>
-  )
+  );
 };
- 
+
 export default Main;

@@ -1,24 +1,22 @@
-import React from 'react'
-import './story.css'
+import React from "react";
+import "./story.css";
 
 const Story = (props) => {
   const { title, score, by, time, onClick } = props;
 
   return (
-    <div className="story" onClick={onClick}> 
+    <div className="story" onClick={onClick}>
       <div className="story-name">
-        {title}
+        <h4>{title}</h4>
       </div>
       <div className="story-desc">
         <div className="story-rate">
-          {score}
+          <b>{score}</b> Points
         </div>
         <div className="story-author">
-          {by}
+          Post by <b>{by}</b>
         </div>
-        <div className="story-date">
-          {time}
-        </div>
+        <div className="story-date">at {time}</div>
       </div>
     </div>
   );
