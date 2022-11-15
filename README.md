@@ -18,4 +18,4 @@
 
 ### `Или`
 
-Вы можете воспользоваться live версией, [перейдите по этой ссылке](https://avito-tech-omvtanduy-metkiyd.vercel.app/)
+Вы можете воспользоваться live версией, [перейдите по этой ссылке](https://avito-tech-metkiyd.vercel.app/)
