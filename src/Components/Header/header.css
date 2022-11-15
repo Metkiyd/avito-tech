@@ -1,4 +1,22 @@
 .header {
-  display: flex;
+  box-shadow: 0 10px 30px 10px rgb(0 0 0 / 30%);
   background-color: rgb(250, 100, 0);
+  background-image: linear-gradient(to right, rgb(250, 100, 0) 40%, rgb(238, 67, 0));
+}
+.header-container {
+  display: flex;
+  margin: 0 auto;
+  max-width: 1024px;
+  gap: 30px;
+  align-items: center;
+}
+.header-logo {
+  border: 2px solid;
+  height: 30px;
+  width: 30px;
+  border-color: white;
+}
+
+.header-title {
+  color: white;
 }

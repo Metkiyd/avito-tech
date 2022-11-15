@@ -6,9 +6,7 @@ const Story = (props) => {
 
   return (
     <div className="story" onClick={onClick}>
-      <div className="story-name">
-        <h4>{title}</h4>
-      </div>
+      <h4 className="story-name">{title}</h4>
       <div className="story-desc">
         <div className="story-rate">
           <b>{score}</b> Points

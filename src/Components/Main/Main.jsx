@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "./main.css";
+import dateConverter from "../../helpers/dateConverter";
 
 import { getNews } from "../../redux/actions/NewsActions";
 import Story from "../Story/Story";
@@ -13,7 +14,7 @@ const Main = () => {
 
   useEffect(() => {
     update();
-    // setInterval(() => update(), 60000);
+    setInterval(() => update(), 60000);
   }, []);
 
   const News = useSelector((state) => state.News.news);
@@ -22,21 +23,23 @@ const Main = () => {
 
   return (
     <div className="container">
-      <button
-        className="update-news"
-        onClick={() => {
-          update();
-        }}
-      >
-        Update News
-      </button>
+      <div className="item-buttons">
+        <button
+          className="btn"
+          onClick={() => {
+            update();
+          }}
+        >
+          Update News
+        </button>
+      </div>
       {News.map((item) => (
         <Story
           key={item.id}
           title={item.title}
           by={item.by}
           score={item.score}
-          time={item.time}
+          time={dateConverter(item.time)}
           onClick={() => navigate(`/story/${item.id}`)}
         />
       ))}
