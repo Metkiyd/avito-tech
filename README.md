@@ -15,3 +15,7 @@
 ### `yarn start`
 
 Для запуска приложения, откройте [http://localhost:3000](http://localhost:3000) для просмотра в окне вашего браузера.
+
+### `Или`
+
+Вы можете воспользоваться live версией, [перейдите по этой ссылке](https://avito-tech-omvtanduy-metkiyd.vercel.app/)
