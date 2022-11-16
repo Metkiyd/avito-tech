@@ -1,18 +1,27 @@
-import { GET_NEWS } from "../actions/NewsActions";
+import { SET_NEWS, SET_STORY } from "../actions/NewsActions";;
 
 const initialState = {
   news: [],
+  story: [],
   isFetching: false,
 };
 
-//reducer
 export default function NewsReducer(state = initialState, action) {
   switch (action.type) {
-    case GET_NEWS:
+
+    case SET_NEWS: {
       return {
         ...state,
-        news: action.payload,
+        news: action.news,
       };
+    }
+    case SET_STORY: {
+      return {
+        ...state,
+        story: action.story,
+      };
+    }
+
     default:
       return state;
   }

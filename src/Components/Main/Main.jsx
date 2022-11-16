@@ -40,6 +40,7 @@ const Main = () => {
           by={item.by}
           score={item.score}
           time={dateConverter(item.time)}
+          descendants={item.descendants}
           onClick={() => navigate(`/story/${item.id}`)}
         />
       ))}

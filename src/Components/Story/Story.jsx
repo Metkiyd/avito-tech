@@ -2,7 +2,7 @@ import React from "react";
 import "./story.css";
 
 const Story = (props) => {
-  const { title, score, by, time, onClick } = props;
+  const { title, score, by, time, descendants, onClick } = props;
 
   return (
     <div className="story" onClick={onClick}>
@@ -15,6 +15,9 @@ const Story = (props) => {
           Post by <b>{by}</b>
         </div>
         <div className="story-date">at {time}</div>
+        <div className='story-comments'>
+            Comments: {descendants}
+        </div>
       </div>
     </div>
   );

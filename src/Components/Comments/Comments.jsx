@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ReactHtmlParser from "html-react-parser";
 import "./comments.css";
 
-import { getSubComment } from "../../redux/actions/SubCommentActions";
+import { getSubComment } from "../../redux/actions/CommentsActions";
 
 const Comments = (comment) => {
   // const dispatch = useDispatch();

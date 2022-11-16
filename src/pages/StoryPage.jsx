@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import "./storyPage.css";
 import dateConverter from "../helpers/dateConverter";
 
-import { getStory } from "../redux/actions/StoryActions";
+import { getStory } from "../redux/actions/NewsActions";
 import { getComments } from "../redux/actions/CommentsActions";
 import Comments from "../Components/Comments/Comments";
 
@@ -18,7 +18,7 @@ const StoryPage = () => {
     dispatch(getComments(id));
   }, []);
 
-  const Story = useSelector((state) => state.Story.stories);
+  const Story = useSelector((state) => state.News.story);
   const stateComments = useSelector((state) => state.Comments.comments);
 
   const updateComments = () => {

@@ -1,26 +1,19 @@
-import axios from "axios";
+import { fetchNews, fetchItemById } from "../../api/api";
 
-//action type
-export const GET_NEWS = "GET_NEWS";
+export const SET_NEWS = "SET_NEWS";
+export const SET_STORY = "SET_STORY";
 
-//action
-export const setNews = (news) => ({
-  type: GET_NEWS,
-  payload: news,
-});
+export const setNews = (news) => ({type: SET_NEWS, news});
+export const setStory = (story) => ({type: SET_STORY, story});
 
-// request
 export const getNews = () => {
   return async (dispatch) => {
-    const response = await axios.get(
-      `https://hacker-news.firebaseio.com/v0/newstories.json?orderBy=%22$key%22&limitToFirst=${100}`
-    );
-    const result = response.data;
-    //console.log(result) //arr ids
-    //need2change
+    let response = await fetchNews();
+    // console.log('last news arr ids', response)
+
     let news = await Promise.all(
-      result.map(async (id) => {
-        const resp = await getStories(id);
+      response.map(async (id) => {
+        const resp = await fetchItemById(id);
         return resp;
       })
     );
@@ -28,11 +21,8 @@ export const getNews = () => {
   };
 };
 
-export const getStories = async (id) => {
-  const response = await axios.get(
-    `https://hacker-news.firebaseio.com/v0/item/${id}.json?print=pretty`
-  );
-  const result = response.data;
-  //console.log(result) //stories objects
-  return result;
+export const getStory = (id) => async (dispatch) => {
+  const response = await fetchItemById(id);
+  // console.log('story or comment object', response)
+  dispatch(setStory(response));
 };
