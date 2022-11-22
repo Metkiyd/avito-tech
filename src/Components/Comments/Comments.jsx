@@ -1,59 +1,60 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import ReactHtmlParser from "html-react-parser";
 import "./comments.css";
+import dateConverter from "../../helpers/dateConverter";
+import { fetchItemById } from "../../api/api";
 
-import { getSubComment } from "../../redux/actions/CommentsActions";
+const Comments = ({elem}) => {
+  const { by, text, time } = elem;
+  const [answers, setAnswers] = useState(false);
+  const [nestedComments, setNestedComments] = useState([])
 
-const Comments = (comment) => {
-  // const dispatch = useDispatch();
-  // console.log('comment', comment, comment.id)
-  const { by, text, time } = comment;
+  useEffect(() => {
+    getRequest();
+  }, []);
 
-  // const stateSubComment = useSelector((state) => state.SubComment.subComments);
+  const getRequest = async () => {
+    let newNestedComments = [];
+    if (!elem.kids)
+      return;
+    for (let commentId of elem.kids) {
+      const nestedComment = await fetchItemById(commentId);
+        if (nestedComment !== null) newNestedComments = [...newNestedComments, nestedComment];
+    }
+    setNestedComments(newNestedComments);
+  }
 
-  // const [subComments, setSubComments] = useState([]);
-  // const [isShowSubComments, setIsShowSubComments] = useState(false);
+  const showSubComments =  () => {
+    setAnswers(!answers)
+  };
 
-  // const showSubComments = async () => {
-  //   await dispatch(getSubComment(kids, id));
-  //   setIsShowSubComments((isShowSubComments) => !isShowSubComments);
-  // };
+  const showChild = () => {
+    return nestedComments.map((kidId) => (
+      <Comments
+          key={kidId}
+          elem={kidId}
+      />
+    ));
+  }
 
-  // useEffect(() => {
-  //   // console.log("stateSubComment in use effect", stateSubComment);
-  //   setSubComments(stateSubComment);
-  // }, [stateSubComment]);
-
-  // console.log(subComments.length)
-  // console.log("stateSubComment glob", stateSubComment);
   return (
     <div className="comment">
       <div className="comment-title">
         <div className="author">
           <b>{by}</b>
         </div>
-        <div className="time"> at {time}</div>
+        <div className="time"> at {dateConverter(time)}</div>
       </div>
-      <div>
-        <div className="text">{ReactHtmlParser(text)}</div>
-      </div>
-      {/* {kids?.length && <button onClick={showSubComments}>Show answers</button>} */}
-      {/* <button onClick={showSubComments}>Show answers</button> */}
-      {/* {isShowSubComments &&
-        (subComments.length ? (
-          subComments?.map((elem) => (
-            <Comments
-              key={elem[id].id}
-              by={elem[id].by}
-              time={elem[id].time}
-              text={elem[id].text}
-              kids={elem[id].kids}
-            />
-          ))
-        ) : (
-          <div>Loading</div>
-        ))} */}
+      {elem.deleted ?
+        <div>Deleted</div> :
+        <div>
+          <div className="text">{ReactHtmlParser(text)}</div>
+        </div>}
+      {elem.kids?.length && 
+      <button className="btn answers" onClick={showSubComments}>
+        {answers ? <div>Hide answers</div> : <div>Show answers</div>}
+        </button> }
+      {answers && <div>{showChild()}</div> }
     </div>
   );
 };

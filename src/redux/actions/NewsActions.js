@@ -23,6 +23,6 @@ export const getNews = () => {
 
 export const getStory = (id) => async (dispatch) => {
   const response = await fetchItemById(id);
-  // console.log('story or comment object', response)
+  // console.log('story object', response)
   dispatch(setStory(response));
 };

@@ -20,6 +20,7 @@ const StoryPage = () => {
 
   const Story = useSelector((state) => state.News.story);
   const stateComments = useSelector((state) => state.Comments.comments);
+  // console.log("stateComments", stateComments)
 
   const updateComments = () => {
     dispatch(getStory(id));
@@ -58,9 +59,7 @@ const StoryPage = () => {
         {stateComments.map((elem) => (
           <Comments
             key={elem.id}
-            by={elem.by}
-            time={dateConverter(elem.time)}
-            text={elem.text}
+            elem={elem}
           />
         ))}
       </div>

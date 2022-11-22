@@ -9,3 +9,9 @@
   margin-bottom: 10px;
   gap: 10px;
 }
+.answers {
+  padding: 5px 10px;
+  font-size: 14px;
+  font-weight: 500;
+
+}
