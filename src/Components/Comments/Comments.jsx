@@ -45,7 +45,7 @@ const Comments = ({elem}) => {
         </div>
         <div className="time"> at {dateConverter(time)}</div>
       </div>
-      {elem.deleted ?
+      {elem.deleted || elem.dead ?
         <div>Deleted</div> :
         <div>
           <div className="text">{ReactHtmlParser(text)}</div>
