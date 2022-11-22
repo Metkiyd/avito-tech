@@ -40,4 +40,4 @@
 
 ### `Или`
 
-Вы можете воспользоваться live версией, [перейдите по этой ссылке](https://avito-tech-metkiyd.vercel.app/)
+Вы можете воспользоваться LIVE версией, [ПЕРЕЙДИТЕ ПО ССЫЛКЕ](https://avito-tech-metkiyd.vercel.app/)
